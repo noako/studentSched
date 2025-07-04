@@ -1,10 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const authRoutes = require('./routes/auth');
 
 // Middleware
 app.use(express.json());
 
+app.use(cors({origin: true, credentials: true})); // Enable CORS for all origins
+app.use('/api/auth', authRoutes);
 // Routes
 app.get('/', (req, res) => {
   res.send('Backend is running');
