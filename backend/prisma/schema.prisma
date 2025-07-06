@@ -13,8 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserStatus{
+  active
+  pending
+  error
+}
+
 model User {
   uid String  @id
   email String @unique
   role String
+  status UserStatus @default(active)
 }
